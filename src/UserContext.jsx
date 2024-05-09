@@ -7,7 +7,7 @@ export const UserContext = createContext()
 export const UserStorage = ({ children }) => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(null)
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState()
   const [error, setError] = useState(null)
   const navigate = useNavigate()
   /**
@@ -25,11 +25,14 @@ export const UserStorage = ({ children }) => {
           const response = await fetch(url, options)
           if (!response.ok) throw new Error('Token invalido!')
           await getUser(token)
+          console.log('carregou dados')
         } catch (err) {
           userLogout()
         } finally {
           setLoading(false)
         }
+      } else {
+        setLogin(false)
       }
     }
     autoLogin()
@@ -57,7 +60,7 @@ export const UserStorage = ({ children }) => {
         password: password,
       })
       const response = await fetch(url, options)
-      if (!tokenRes.ok) throw new Error(`Error: ${response.statusText}`)
+      if (!response.ok) throw new Error(`Error: ${response.statusText}`)
 
       const { token } = await response.json()
 

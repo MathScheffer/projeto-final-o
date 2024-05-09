@@ -6,7 +6,8 @@ import Footer from './Components/Footer'
 import Home from './Components/Home'
 import Login from './Components/Login/Login'
 import { UserStorage } from './UserContext'
-import Conta from './Components/Conta'
+import Conta from './Components/Conta/Conta'
+import ProtectedRoute from '../ProtectedRoute'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,7 +20,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="login/*" element={<Login />} />
-            <Route path="conta" element={<Conta />} />
+            <Route
+              path="conta/*"
+              element={
+                <ProtectedRoute>
+                  <Conta />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </UserStorage>
       </BrowserRouter>

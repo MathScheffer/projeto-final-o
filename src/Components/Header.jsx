@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import style from './Header.module.css'
 import { Link, NavLink } from 'react-router-dom'
-import Dogs from '../Assets/dogs.svg?react'
+import Dogs from '../assets/dogs.svg?react'
 import { UserContext } from '../UserContext'
 import Login from './Login/Login'
 import Button from './Forms/Button'
